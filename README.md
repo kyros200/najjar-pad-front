@@ -2,6 +2,8 @@
 
 *Created by Rafael Najjar (@kyros200)*
 
+# [Demo here!](https://najjar-pad-front.vercel.app/tutorial)
+
 ## Changelog
 
 V 1.0
@@ -14,51 +16,15 @@ The idea was simple: Copy the [dontpad.com](http://dontpad.com/) idea: an online
 
 
 ## Instalation
-In total there has 2 differents projects within this repository. One for Front-end and the other for Back-end. You need to install and run both of them separately on your machine. You will also need to have a MySQL database running in your machine.
-
-The Front-end project was developed in React.JS and the Back-end in Node.js using mainly Express.js.
-
-### Data Base
-Just run the `najjarPadSetup.sql` in the root folder or just copy and run the following SQL:
-```
-create database najjarPad;
-
-CREATE TABLE pad (
-    id_pad int primary key auto_increment,
-    name varchar(255),
-    markdown varchar(255),
-    id_pad_father int
-);
-
-alter table pad
-add foreign key (id_pad_father) references pad(id_pad);
-```
-
-
-### Front
 Inside the `front` folder, open a `cmd` and do the following to install and run:
 ```
 npm install
 npm start
 ```
 
+At the `MainPage.js` file, inside `component` file, you need to change the `back-url` const to properly request on your back-end side.
 
-### Back
-Inside the `back` folder, open a `cmd` and do the following to install and run:
-```
-npm install
-npm start
-```
-**Another thing you will need to do is** to create the `.env` file and fill the information about your MySQL info. The file should be like this:
-```
-MYSQL_HOST=localhost
-MYSQL_USER=root
-MYSQL_PASS=root
-MYSQL_SCHEMA=najjarpad
-MYSQL_BASE=najjarpad
-MYSQL_PORT=3306
-NODE_ENV=production
-```
+You also need to run `najjar-pad-back` at the same time to do the requests.
 
 ## How to use
 It's super easy! Just put in the URL `/<name of Pad>`, ***without spaces***, and edit your pad!
@@ -87,5 +53,4 @@ And that's it! Have fun!
   * **Public**: Normal one, as you can use now.
   * **Read Only**: A Pad that you can only read. To request an edit, you need to put a ***password***
   * **Private**: A Pad that you can only read if you put a ***password***
-* Tutorial for najjar-pad and markdown on the site
-* Optimize the HTTP requests (only saving when i see changes in the markdown)
+* Tutorial for najjar-pad and markdown on the site (hardcode /tutorial maybe?)
