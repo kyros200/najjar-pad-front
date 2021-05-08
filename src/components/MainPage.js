@@ -7,7 +7,7 @@ import Editor from './Editor';
 import Modal from './Modal';
 
 // const back_url = `http://localhost:80`;
-const back_url = `https://najjar-pad.herokuapp.com/`;
+const back_url = `https://najjar-pad.herokuapp.com`;
 
 function MainPage() {
     const [idPad, setIdPad] = useState();
