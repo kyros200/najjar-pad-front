@@ -1,0 +1,26 @@
+html, body, .viewport {
+    width: 100%;
+    min-height: 100% !important;
+    height: 100%;
+    margin: 0;
+    overflow-y: hidden;
+}
+
+* {
+    font-family: 'Kufam', cursive;
+    font-weight: 500;
+}
+
+*::selection {
+    color:#2B6535;
+    background: #0AC9B0;
+}
+
+#root {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+}

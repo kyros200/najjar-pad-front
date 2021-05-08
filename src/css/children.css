@@ -1,0 +1,37 @@
+.childrenContainer {
+    display: flex;
+    flex-direction: column;
+    width: 12%;
+    background-color: #f0f0f0;
+}
+
+.childrenContainer .title {
+    background-color: #0AC9B0;
+    text-align: center;
+
+    padding: 4px 8px;
+    margin: 12px;
+
+    border: 2px solid black;
+    border-radius: 8px;
+
+    font-family: 'Fira Code';
+    font-size: 16px;
+}
+
+.childrenContainer .childrenButton {
+    padding: 8px;
+    margin: 8px;
+    width: fit-content;
+    cursor: pointer;
+
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: #9FD39C;
+
+    transition: 0.3s ease;
+}
+
+.childrenContainer .childrenButton:hover {
+    background-color: #2B912D;
+}
