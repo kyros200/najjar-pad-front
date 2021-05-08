@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/najjar-pad-front/static/css/main.d09e0cc3.chunk.css",
+    "main.js": "/najjar-pad-front/static/js/main.a73b7da4.chunk.js",
+    "main.js.map": "/najjar-pad-front/static/js/main.a73b7da4.chunk.js.map",
+    "runtime-main.js": "/najjar-pad-front/static/js/runtime-main.2487513c.js",
+    "runtime-main.js.map": "/najjar-pad-front/static/js/runtime-main.2487513c.js.map",
+    "static/css/2.53f2b94b.chunk.css": "/najjar-pad-front/static/css/2.53f2b94b.chunk.css",
+    "static/js/2.aae7ac91.chunk.js": "/najjar-pad-front/static/js/2.aae7ac91.chunk.js",
+    "static/js/2.aae7ac91.chunk.js.map": "/najjar-pad-front/static/js/2.aae7ac91.chunk.js.map",
+    "static/js/3.df099c0c.chunk.js": "/najjar-pad-front/static/js/3.df099c0c.chunk.js",
+    "static/js/3.df099c0c.chunk.js.map": "/najjar-pad-front/static/js/3.df099c0c.chunk.js.map",
+    "index.html": "/najjar-pad-front/index.html",
+    "static/css/2.53f2b94b.chunk.css.map": "/najjar-pad-front/static/css/2.53f2b94b.chunk.css.map",
+    "static/css/main.d09e0cc3.chunk.css.map": "/najjar-pad-front/static/css/main.d09e0cc3.chunk.css.map",
+    "static/js/2.aae7ac91.chunk.js.LICENSE.txt": "/najjar-pad-front/static/js/2.aae7ac91.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2487513c.js",
+    "static/css/2.53f2b94b.chunk.css",
+    "static/js/2.aae7ac91.chunk.js",
+    "static/css/main.d09e0cc3.chunk.css",
+    "static/js/main.a73b7da4.chunk.js"
+  ]
+}
