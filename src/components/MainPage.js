@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import "react-markdown-editor-lite/lib/index.css";
+import ReactLoading from 'react-loading';
 import "../css/main.css";
 
 import Children from './Children';
@@ -14,6 +15,7 @@ function MainPage() {
     const [markdown, setMarkdown] = useState("");
     const [children, setChildren] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     const idPadRef = useRef(idPad);
     idPadRef.current = idPad;
@@ -34,6 +36,8 @@ function MainPage() {
             } else {
                 setErrorMsg(data.data);
             }
+
+            setIsLoading(false);
         });
     }
 
@@ -69,7 +73,12 @@ function MainPage() {
         <div className={`container`}>
             <Children children={children} />
             <Editor markdown={markdown} setMarkdown={setMarkdown} />
-            <Modal errorMsg={errorMsg} />
+            <Modal open={!!errorMsg}>
+                {errorMsg}
+            </Modal>
+            <Modal open={isLoading}>
+                <ReactLoading type={"spin"} color={"#2B6535"} height={75} width={75} />
+            </Modal>
         </div>
     );
 }
