@@ -23,6 +23,10 @@ function MainPage() {
     const markdownRef = useRef(markdown);
     markdownRef.current = markdown;
 
+    const [lastSavedMarkdown, setLastSavedMarkdown] = useState("");
+    const lastSavedMarkdownRef = useRef(lastSavedMarkdown);
+    lastSavedMarkdownRef.current = lastSavedMarkdown;
+
     const getPad = () => {
         fetch(`${back_url}/pad${window.location.pathname}`)
         .then((res) => res.json())
@@ -31,6 +35,7 @@ function MainPage() {
                 if(data.data) { //EXISTING PAD
                     setIdPad(data.data.id_pad);
                     setMarkdown(data.data.markdown);
+                    setLastSavedMarkdown(data.data.markdown);
                     setChildren(data.children);
                 }
             } else {
@@ -42,24 +47,27 @@ function MainPage() {
     }
 
     const savePad = () => {
-        if(markdownRef.current) {
-            fetch(`${back_url}/pad${window.location.pathname}`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id_pad: idPadRef.current,
-                    markdown: markdownRef.current,
+        if(markdownRef.current !== lastSavedMarkdownRef.current) {
+            if(markdownRef.current) {
+                fetch(`${back_url}/pad${window.location.pathname}`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id_pad: idPadRef.current,
+                        markdown: markdownRef.current,
+                    })
                 })
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                if(typeof data !== "string") { //insert
-                    idPadRef.current = data[0];
-                    setIdPad(data[0]);
-                }
-            });
+                .then((res) => res.json())
+                .then((data) => {
+                    setLastSavedMarkdown(markdownRef.current);
+                    if(typeof data !== "string") { //insert
+                        idPadRef.current = data[0];
+                        setIdPad(data[0]);
+                    }
+                });
+            }
         }
     }
 
@@ -68,7 +76,7 @@ function MainPage() {
         const interval = setInterval(savePad, 5000);
         return () => clearInterval(interval);
     }, []);
-    
+
     return (
         <div className={`container`}>
             <Children children={children} />
