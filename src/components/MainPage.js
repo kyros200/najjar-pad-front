@@ -12,6 +12,7 @@ const back_url = `https://najjar-pad.herokuapp.com`;
 
 function MainPage() {
     const [idPad, setIdPad] = useState();
+    const [open, setOpen] = useState(true);
     const [markdown, setMarkdown] = useState("");
     const [children, setChildren] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
@@ -28,22 +29,26 @@ function MainPage() {
     lastSavedMarkdownRef.current = lastSavedMarkdown;
 
     const getPad = () => {
-        fetch(`${back_url}/pad${window.location.pathname}`)
-        .then((res) => res.json())
-        .then((data) => {
-            if(data.success) {
-                if(data.data) { //EXISTING PAD
-                    setIdPad(data.data.id_pad);
-                    setMarkdown(data.data.markdown);
-                    setLastSavedMarkdown(data.data.markdown);
-                    setChildren(data.children);
+        if(window.location.pathname !== `/`){
+            fetch(`${back_url}/pad${window.location.pathname}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if(data.success) {
+                    if(data.data) { //EXISTING PAD
+                        setIdPad(data.data.id_pad);
+                        setMarkdown(data.data.markdown);
+                        setLastSavedMarkdown(data.data.markdown);
+                        setChildren(data.children);
+                    }
+                } else {
+                    setErrorMsg(data.data);
                 }
-            } else {
-                setErrorMsg(data.data);
-            }
-
+    
+                setIsLoading(false);
+            });
+        } else {
             setIsLoading(false);
-        });
+        }
     }
 
     const savePad = () => {
@@ -79,8 +84,8 @@ function MainPage() {
 
     return (
         <div className={`container`}>
-            <Children children={children} />
-            <Editor markdown={markdown} setMarkdown={setMarkdown} />
+            <Children children={children} open={open} setOpen={setOpen} />
+            <Editor markdown={markdown} setMarkdown={setMarkdown} open={open} />
             <Modal open={!!errorMsg}>
                 {errorMsg}
             </Modal>

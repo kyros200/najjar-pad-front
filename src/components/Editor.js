@@ -7,7 +7,7 @@ const gfm = require('remark-gfm');
 
 function Editor(props) {
     return (
-        <div className={`editor`}>
+        <div className={`editor ${window.location.pathname === `/` ? "hide" : ""} ${(window.innerWidth < 800 && props.open === true) ? "hideMobile" : ""}`}>
             <ReactEditor
                 value={props.markdown}
                 style={{
@@ -18,8 +18,17 @@ function Editor(props) {
                 renderHTML={(text) => <ReactMarkdown remarkPlugins={[gfm]}>{text}</ReactMarkdown>}
                 placeholder={`this pad is empty!`}
                 config={{
-                    view: { menu: true, md: true, html: true },
-                    markdownClass: `md`
+                    view: { 
+                        html: window.innerWidth > 800 ? true : false 
+                    },
+                    canView: { 
+                        menu: window.innerWidth > 800 ? true : false , 
+                        fullScreen: false, 
+                    },
+                    markdownClass: `md`,
+                    //TODO: PUT DEFAULT IMAGE & LINK
+                    // imageUrl: ,
+                    // linkUrl: ,
                 }}
             >
                 {props.markdown}
