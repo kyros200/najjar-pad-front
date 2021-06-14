@@ -3,6 +3,10 @@
     display: flex;
 }
 
+.rootPage {
+    width: 100%;
+}
+
 .childrenContainer.collapse {
     width: fit-content;
 }
@@ -52,19 +56,25 @@
 }
 
 .childrenCollapse {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: pointer;
     padding: 0px 4px;
     width: 100%;
     height: 100%;
     border: 1px solid #e0e0e0;
     background-color: #e0e0e0;
-    align-items: center;
-    display: flex;
     transition: 0.2s;
 }
 
 .childrenCollapse:hover {
     background-color: #d0d0d0;
+}
+
+.rootPage .childrenCollapse {
+    display: none;
 }
 
 .childrenActions {
@@ -126,4 +136,20 @@
 
 .childrenActions .childrenCreateChildren .newChildrenGo:hover {
     background-color: #1f4926;
+}
+
+.rootPage .childrenCreateChildren {
+    justify-content: center;
+}
+
+.rootPageTextContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.rootPageTextContainer .rootPageText {
+    padding: 50px;
+    font-size: 22px;
+    width: 30%;
+    text-align: center;
 }

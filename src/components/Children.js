@@ -28,8 +28,8 @@ function Children(props) {
     }
 
     return (
-        <div className={`childrenContainer ${!open && `collapse`}`}>
-            <div className={`childrenInfo ${!open && `collapse`}`}>
+        <div className={`childrenContainer ${!open ? `collapse` : ""} ${window.location.pathname === `/` ? `rootPage` : ""}`}>
+            <div className={`childrenInfo ${!open ? `collapse` : ""}`}>
                 <div className={`title`}>
                     najjar-pad
                 </div>
@@ -38,6 +38,14 @@ function Children(props) {
                     { window.location.pathname.split("/").length > 2 &&
                     <div onClick={() => goToFather()} className={`chidlrenToFather`}>
                         back to father pad
+                    </div>
+                    }
+
+                    {window.location.pathname === `/` &&
+                    <div className={`rootPageTextContainer`}>
+                        <div className={`rootPageText`}>
+                            Welcome to pad.najjar.dev! Here you can organize yourself with pads using Markdown. Try it out chosing a name! For tutorial, go to <a href="/tutorial">pad.najjar.dev/tutorial</a>
+                        </div>
                     </div>
                     }
 
