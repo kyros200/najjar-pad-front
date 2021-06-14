@@ -17,16 +17,14 @@ function Modal(props) {
     };
 
     return (
-        <div>
-            <ReactModal
-                isOpen={!!props.errorMsg}
-                ariaHideApp={false}
-                style={modalStyle}
-                shouldCloseOnOverlayClick={false}
-            >
-                {props.errorMsg}
-            </ReactModal>
-        </div>
+        <ReactModal
+            isOpen={props.open}
+            ariaHideApp={false}
+            style={modalStyle}
+            shouldCloseOnOverlayClick={false}
+        >
+            {props.children}
+        </ReactModal>
     )
 
 }
