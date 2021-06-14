@@ -3,6 +3,16 @@
     height: 100%;
 }
 
+.editor.hide {
+    display: none;
+}
+
 .editor .md {
     font-family: 'Fira Code'
+}
+
+@media only screen and (max-width: 800px) {
+    .hideMobile {
+        display: none;
+    }
 }

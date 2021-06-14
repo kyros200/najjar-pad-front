@@ -12,6 +12,7 @@ const back_url = `https://najjar-pad.herokuapp.com`;
 
 function MainPage() {
     const [idPad, setIdPad] = useState();
+    const [open, setOpen] = useState(true);
     const [markdown, setMarkdown] = useState("");
     const [children, setChildren] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
@@ -83,10 +84,8 @@ function MainPage() {
 
     return (
         <div className={`container`}>
-            <Children children={children} />
-            {window.location.pathname !== `/` &&
-            <Editor markdown={markdown} setMarkdown={setMarkdown} />
-            }
+            <Children children={children} open={open} setOpen={setOpen} />
+            <Editor markdown={markdown} setMarkdown={setMarkdown} open={open} />
             <Modal open={!!errorMsg}>
                 {errorMsg}
             </Modal>
