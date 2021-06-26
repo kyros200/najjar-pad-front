@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "react-markdown-editor-lite/lib/index.css";
 import "../css/main.css";
 import "../css/setPassword.css";

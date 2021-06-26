@@ -13,7 +13,7 @@ const back_url = `https://najjar-pad.herokuapp.com`;
 
 function MainPage() {
     const [idPad, setIdPad] = useState();
-    const [open, setOpen] = useState(window.innerWidth > 800 ? true :false);
+    const [open, setOpen] = useState(window.innerWidth > 800 ? true : false);
     const [markdown, setMarkdown] = useState("");
     const [children, setChildren] = useState([]);
     const [errorMsg, setErrorMsg] = useState("");
@@ -40,7 +40,8 @@ function MainPage() {
             .then((security) => {
                 if(security.data.havePassword && !security.data.readOnly) {
                     console.log(`PRIVATE`);
-                    requestPass();
+                    setIsLoading(false);
+                    setNeedPass(true)
                 } else if (security.data.havePassword && security.data.readOnly) {
                     console.log(`READ ONLY`);
                     setReadOnly(true);
@@ -72,11 +73,6 @@ function MainPage() {
 
             setIsLoading(false);
         });
-    }
-
-    const requestPass = () => {
-        setIsLoading(false);
-        setNeedPass(true);
     }
 
     const savePad = () => {
