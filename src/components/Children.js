@@ -57,7 +57,7 @@ function Children(props) {
                     </div>
                     }
 
-                    {(!props.needPass && !props.readOnly) && 
+                    {(!props.needPass && !props.readOnly && window.location.pathname !== `/`) && 
                     <div onClick={() => props.openPassModal()} className={`childrenToFather`}>
                         Set Password
                     </div>
