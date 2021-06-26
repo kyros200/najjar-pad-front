@@ -4,6 +4,7 @@ import "../css/children.css";
 
 function Children(props) {
     const [newChildren, setNewChildren] = useState("");
+    const [password, setPassword] = useState("");
 
     const renderChildren = () => {
         return props.children.map((c) => 
@@ -27,15 +28,43 @@ function Children(props) {
     }
 
     return (
-        <div className={`childrenContainer ${props.open ? `` : "collapse"} ${window.location.pathname === `/` ? `rootPage` : ""}`}>
+        <div className={`childrenContainer ${props.open ? `` : "collapse"} ${window.location.pathname === `/` || props.needPass ? `wholePage` : ""}`}>
             <div className={`childrenInfo ${props.open ? `` : "collapse"}`}>
                 <div className={`title`}>
                     najjar-pad
                 </div>
                 <div className={`childrenActions`}>
 
+                    {(props.needPass || props.readOnly) &&
+                    <div style={{display: `flex`, flexDirection: `column`}}>
+                        {props.readOnly ?
+                        <div className={`needPassText`}>
+                            This is a Read Only Pad! Please enter the correct password to edit this pad.
+                        </div>
+                        :
+                        <div className={`needPassText`}>
+                            This is a Private Pad! Please enter the correct password to view and edit this pad.
+                        </div>
+                        }
+                        <div className={`childrenCreateChildren breakLine`}>
+                            <div className={`newChildrenName`}>
+                                <input placeholder={`Password...`} value={password} onChange={(e) => setPassword(e.target.value)} />
+                            </div>
+                            <div onClick={() => props.validatePass(password)} className={`newChildrenGo`}>
+                                Go!
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    {(!props.needPass && !props.readOnly) && 
+                    <div onClick={() => props.openPassModal()} className={`childrenToFather`}>
+                        Set Password
+                    </div>
+                    }
+
                     { window.location.pathname.split("/").length > 2 &&
-                    <div onClick={() => goToFather()} className={`chidlrenToFather`}>
+                    <div onClick={() => goToFather()} className={`childrenToFather`}>
                         back to father pad
                     </div>
                     }
@@ -48,6 +77,7 @@ function Children(props) {
                     </div>
                     }
 
+                    {!props.needPass && !props.readOnly &&
                     <div className={`childrenCreateChildren`}>
                         <div className={`newChildrenName`}>
                             <input placeholder={`New pad...`} value={newChildren} onChange={(e) => setNewChildren(e.target.value)} />
@@ -56,6 +86,7 @@ function Children(props) {
                             Go!
                         </div>
                     </div>
+                    }
 
                 </div>
                 {renderChildren()}

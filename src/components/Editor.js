@@ -7,7 +7,7 @@ const gfm = require('remark-gfm');
 
 function Editor(props) {
     return (
-        <div className={`editor ${window.location.pathname === `/` ? "hide" : ""} ${(window.innerWidth < 800 && props.open === true) ? "hideMobile" : ""}`}>
+        <div className={`editor ${window.location.pathname === `/` || props.needPass ? "hide" : ""} ${(window.innerWidth < 800 && props.open === true) || props.needPass ? "hideMobile" : ""}`}>
             <ReactEditor
                 value={props.markdown}
                 style={{
@@ -19,10 +19,12 @@ function Editor(props) {
                 placeholder={`this pad is empty!`}
                 config={{
                     view: { 
-                        html: window.innerWidth > 800 ? true : false 
+                        // html: window.innerWidth > 800 ? true : false,
+                        menu: props.readOnly ? false : true,
+                        md: props.readOnly ? false : true,
                     },
                     canView: { 
-                        menu: window.innerWidth > 800 ? true : false , 
+                        // menu: window.innerWidth > 800 ? true : false, 
                         fullScreen: false, 
                     },
                     markdownClass: `md`,

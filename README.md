@@ -2,9 +2,15 @@
 
 *Created by Rafael Najjar (@kyros200)*
 
-# [Demo here!](https://najjar-pad-front.vercel.app/tutorial)
+# [Demo here!](https://pad.najjar.dev/tutorial)
 
 ## Changelog
+
+V 2.0 (26/06/2021)
+* Now there is Private & ReadOnly Pads!
+
+V 1.1
+* QoS changes; Supports Mobile
 
 V 1.0
 * Initial Release, with Front and Back projects!
@@ -27,25 +33,7 @@ At the `MainPage.js` file, inside `component` file, you need to change the `back
 You also need to run `najjar-pad-back` at the same time to do the requests.
 
 ## How to use
-It's super easy! Just put in the URL `/<name of Pad>`, ***without spaces***, and edit your pad!
-
-![change pad gif](https://i.gyazo.com/75edc53b436ad289084dc2fb8d0f7915.gif)
-
-Don't forget that (for now) all ***information is public***!!! Everyone can access all pads!
-
-You can create n numbers of pads within a pad (let's call it a subPad). Every subPad can have n numbers of subPads. For example: `/<name of pad>/<name of subPad>/<name of subpad>`
-
-![subPad gif](https://i.gyazo.com/76755626f3747cd4f6ff083549c7fe09.gif)
-
-If a pad (or subPad) have subPads, it will show in the site!
-
-![clickingChild gif](https://i.gyazo.com/e03a1640abc47cfb6bb906a5578dbbe5.gif)
-
-Finally, if you create a Pad but the father don't have any text, it will give a message for you to create the father first.
-
-![error gif](https://i.gyazo.com/8dcc667e2cfd93d72c026e5e3836f0e4.gif)
-
-And that's it! Have fun!
+Check out `pad.najjar.dev/tutorial` !!!
 
 
 ## Future
