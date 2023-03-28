@@ -9,7 +9,7 @@ import Modal from './Modal';
 import SetPassword from "./SetPassword";
 
 // const back_url = `http://localhost:80`;
-const back_url = `https://najjar-pad.herokuapp.com`;
+const back_url = `https://najjar-pad.onrender.com`;
 
 function MainPage() {
     const [idPad, setIdPad] = useState();
