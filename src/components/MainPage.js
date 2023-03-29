@@ -3,7 +3,7 @@ import "react-markdown-editor-lite/lib/index.css";
 import ReactLoading from 'react-loading';
 import "../css/main.css";
 
-import Children from './Children';
+import Menu from './Menu';
 import Editor from './Editor';
 import Modal from './Modal';
 import SetPassword from "./SetPassword";
@@ -154,7 +154,7 @@ function MainPage() {
 
     return (
         <div className={`container`}>
-            <Children openPassModal={openPassModal} readOnly={readOnly} needPass={needPass} children={children} open={open} setOpen={setOpen} validatePass={validatePass} />
+            <Menu openPassModal={openPassModal} readOnly={readOnly} needPass={needPass} children={children} open={open} setOpen={setOpen} validatePass={validatePass} />
             {!isLoading &&
             <Editor readOnly={readOnly} needPass={needPass} markdown={markdown} setMarkdown={setMarkdown} open={open} />
             }
