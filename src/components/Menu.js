@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css/main.css";
-import "../css/children.scss";
+import "../css/menu.scss";
 
 function Menu(props) {
     const [newChildren, setNewChildren] = useState("");
@@ -92,7 +92,7 @@ function Menu(props) {
                 </div>
                 <div className={`footer`}>
                     <div className='text'>
-                        <span className="hatch"><a href="hatch.najjar.dev" className="link">Hatch.</a></span> know who I am.
+                        <span className="hatch"><a href="https://hatch.najjar.dev" target="_blank" className="link">Hatch.</a></span> know who I am.
                     </div>
                     <div className='text'>
                         {new Date().getFullYear()} Made by Rafael Najjar
