@@ -1,10 +1,12 @@
 import { useState } from "react";
+import NajjarDoc from '../NajarDoc/NajjarDoc'
 import "../css/main.css";
 import "../css/menu.scss";
 
 function Menu(props) {
     const [newChildren, setNewChildren] = useState("");
     const [password, setPassword] = useState("");
+    const [modalDoc, setModalDoc] = useState(false);
 
     const renderChildren = () => {
         return props.children.map((c) => 
@@ -27,12 +29,30 @@ function Menu(props) {
         window.location.href = `${window.origin}${newPath.join("/")}`;
     }
 
+    const data = [
+        {
+            label: "Tutorial",
+            endpoint: "/tutorial"
+        },
+        {
+            label: "Element Gourmet",
+            endpoint: "/elementgourmet"
+        },
+        {
+            label: "ERROR",
+            endpoint: "/ASIDSAIDHAOSIDHASODIUHASODIUH"
+        },
+    ]
+
     return (
         <div className={`childrenContainer ${props.open ? `` : "collapse"} ${window.location.pathname === `/` || props.needPass ? `wholePage` : ""}`}>
             <div className={`childrenInfo ${props.open ? `` : "collapse"}`}>
                 <div className="top">
                     <div className={`header`}>
                         NajjarPad.
+                        <div className="najjarDocButton" onClick={() => setModalDoc(true)}>
+                            ?
+                        </div>
                     </div>
                     <div className={`childrenActions`}>
                         {(props.needPass || props.readOnly) &&
@@ -102,6 +122,11 @@ function Menu(props) {
             <div className={`childrenCollapse`} onClick={() => props.setOpen(!props.open) }>
                 {props.open ? `<` : `>`}
             </div>
+            <NajjarDoc 
+                open={modalDoc}
+                onClose={() => setModalDoc(false)}
+                data={data}
+            />
         </div>
     )
 }

@@ -2,9 +2,9 @@
     width: 15%;
     display: flex;
 
-    > .collapse {
-        width: fit-content;
-    }
+    // &.collapse {
+    //     width: fit-content;
+    // }
 
     @media only screen and (max-width: 800px) {
         width: 100%;
@@ -47,6 +47,16 @@
         font-size: 40px;
         line-height: 40px;
         user-select: none;
+
+        >.najjarDocButton {
+            position: absolute;
+            right: calc((100vw - 1100px) / 2);
+            top: 12px;
+
+            @media only screen and (max-width: 800px) {
+                right: 12px;
+            }
+        }
     }
 
     .footer {
@@ -117,9 +127,9 @@
     }
 }
 
-.childrenInfo.collapse {
-    display: none;
-}
+// .childrenInfo.collapse {
+//     display: none;
+// }
 
 .childrenCollapse {
     display: flex;
