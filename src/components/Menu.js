@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NajjarDoc from '../NajarDoc/NajjarDoc'
+import NajjarDocImage from '../NajarDoc/NajjarDocWhite.svg'
 import "../css/main.css";
 import "../css/menu.scss";
 
@@ -31,17 +32,17 @@ function Menu(props) {
 
     const data = [
         {
-            label: "Tutorial",
-            endpoint: "/tutorial"
+            label: "Intro",
+            endpoint: "/najjarpad"
         },
         {
-            label: "Element Gourmet",
-            endpoint: "/elementgourmet"
+            label: "Design Comments",
+            endpoint: "/najjarpad/design"
         },
         {
-            label: "ERROR",
-            endpoint: "/ASIDSAIDHAOSIDHASODIUHASODIUH"
-        },
+            label: "Patch Note",
+            endpoint: "/najjarpad/patchnote"
+        }
     ]
 
     return (
@@ -51,7 +52,7 @@ function Menu(props) {
                     <div className={`header`}>
                         NajjarPad.
                         <div className="najjarDocButton" onClick={() => setModalDoc(true)}>
-                            ?
+                            <img src={NajjarDocImage} alt="NajjarDoc" />
                         </div>
                     </div>
                     <div className={`childrenActions`}>
@@ -92,7 +93,7 @@ function Menu(props) {
                         {window.location.pathname === `/` &&
                         <div className={`rootPageTextContainer`}>
                             <div className={`rootPageText`}>
-                                Welcome to pad.najjar.dev! Here you can organize yourself with pads using Markdown. Try it out chosing a name! For tutorial, go to <a href="/tutorial">pad.najjar.dev/tutorial</a>
+                                Welcome to pad.najjar.dev! Here you can organize yourself with pads using Markdown. Try it out chosing a name! For tutorial, go to <a href="/tutorial">/tutorial</a>
                             </div>
                         </div>
                         }

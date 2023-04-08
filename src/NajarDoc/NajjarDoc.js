@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import "../css/main.css";
 import "./NajjarDoc.scss";
-import Modal from "../components/Modal";
+import ReactModal from 'react-modal';
 import ReactLoading from 'react-loading';
 import ReactMarkdown from "react-markdown";
 // const gfm = require('remark-gfm');
 
 function NajjarDoc({open, onClose = () => {console.log("You didn't put a onClose clause in this NajjarDoc...")}, data = []}) {
 
-    const [markdown, setMarkdown] = useState('oie, kdkd')
+    const [markdown, setMarkdown] = useState('')
     const [renderedEndpoint, setRenderedEndpoint] = useState(data[0]?.endpoint)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -32,8 +32,28 @@ function NajjarDoc({open, onClose = () => {console.log("You didn't put a onClose
         }
     }, [renderedEndpoint])
 
+    const modalStyle = {
+        content : {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            borderRadius: '0px',
+            boxShadow: '5px 5px',
+            maxHeight: "90%",
+            maxWidth: "90%"
+        }
+    };
+
     return (
-        <Modal open={open}>
+        <ReactModal
+            isOpen={open}
+            onRequestClose={onClose}
+            ariaHideApp={false}
+            style={modalStyle}
+        >
             <div className="navBarContainer">
                 {data.map(({ label, endpoint }, index) => (
                     <div className={`option ${renderedEndpoint === endpoint ? "selected" : ""}`} onClick={() => setRenderedEndpoint(endpoint)} key={`option-${index}`}>
@@ -46,7 +66,7 @@ function NajjarDoc({open, onClose = () => {console.log("You didn't put a onClose
             </div>
             <div className={`najjarDocEditor`}>
                 {isLoading ?
-                <div className="teste">
+                <div className="loaderContainer">
                     <ReactLoading type={"spin"} color={"#2B6535"} height={75} width={75} />
                 </div>
                 :
@@ -56,7 +76,7 @@ function NajjarDoc({open, onClose = () => {console.log("You didn't put a onClose
                 />
                 }
             </div>
-        </Modal>
+        </ReactModal>
     )
 }
 

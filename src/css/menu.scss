@@ -41,7 +41,7 @@
     
         padding: 10px 0px;
     
-        font-family: 'Righteous', cursive;
+        font-family: 'Righteous';
         text-decoration: none;
         color: #f0f8ff;
         font-size: 40px;
@@ -52,6 +52,12 @@
             position: absolute;
             right: calc((100vw - 1100px) / 2);
             top: 12px;
+
+            fill: white;
+
+            cursor: pointer;
+
+            border-radius: 12px;
 
             @media only screen and (max-width: 800px) {
                 right: 12px;
@@ -86,7 +92,7 @@
                 font-size: 22px;
                 
                 .link {
-                    font-family: 'Righteous', cursive;
+                    font-family: 'Righteous';
                     color: #f0f8ff;
                     text-decoration: none;
                     user-select: none;
