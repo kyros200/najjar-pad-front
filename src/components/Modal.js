@@ -1,5 +1,4 @@
 import ReactModal from 'react-modal';
-import "../css/main.css";
 
 function Modal(props) {
     const modalStyle = {

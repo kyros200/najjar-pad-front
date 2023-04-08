@@ -1,7 +1,6 @@
 import ReactEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
-import "../css/main.css";
-import "../css/editor.css";
+import "./editor.scss";
 const ReactMarkdown = require('react-markdown');
 const gfm = require('remark-gfm');
 

@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import "react-markdown-editor-lite/lib/index.css";
 import ReactLoading from 'react-loading';
-import "../css/main.css";
 
 import Menu from './Menu';
 import Editor from './Editor';

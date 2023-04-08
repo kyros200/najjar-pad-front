@@ -1,15 +1,23 @@
 .editor {
     width: 100%;
     height: 100%;
+
+    &.hide {
+        display: none;
+    }
+
+    >.md {
+        font-family: 'Fira Code'
+    }
 }
 
-.editor.hide {
+/* .editor.hide {
     display: none;
 }
 
 .editor .md {
     font-family: 'Fira Code'
-}
+} */
 
 @media only screen and (max-width: 800px) {
     .hideMobile {
