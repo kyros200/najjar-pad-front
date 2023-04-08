@@ -15,4 +15,12 @@
     .hideMobile {
         display: none;
     }
+
+    .rc-md-editor .editor-container {
+        flex-direction: column;
+    }
+
+    .section.sec-html.visible {
+        border-top: 1px solid black;
+    }
 }

@@ -45,6 +45,7 @@ function MainPage() {
                 } else if (security.data.havePassword && security.data.readOnly) {
                     console.log(`READ ONLY`);
                     setReadOnly(true);
+                    setOpen(false)
                     requestPad();
                 } else {
                     console.log(`PUBLIC`);
@@ -154,9 +155,23 @@ function MainPage() {
 
     return (
         <div className={`container`}>
-            <Menu openPassModal={openPassModal} readOnly={readOnly} needPass={needPass} children={children} open={open} setOpen={setOpen} validatePass={validatePass} />
+            <Menu 
+                openPassModal={openPassModal} 
+                readOnly={readOnly} 
+                needPass={needPass} 
+                children={children} 
+                open={open} 
+                setOpen={setOpen} 
+                validatePass={validatePass} 
+            />
             {!isLoading &&
-            <Editor readOnly={readOnly} needPass={needPass} markdown={markdown} setMarkdown={setMarkdown} open={open} />
+            <Editor 
+                readOnly={readOnly} 
+                needPass={needPass} 
+                markdown={markdown} 
+                setMarkdown={setMarkdown} 
+                open={open} 
+            />
             }
             <Modal open={!!errorMsg}>
                 {errorMsg}
