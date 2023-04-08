@@ -12,11 +12,16 @@
 
 .wholePage {
     width: 100%;
-    .childrenCollapse {
+
+    >.childrenInfo {
+        width: inherit;
+    }
+
+    >.childrenCollapse {
         display: none;
     }
 
-    .childrenCreateChildren {
+    >.childrenCreateChildren {
         justify-content: center;
     }
 }

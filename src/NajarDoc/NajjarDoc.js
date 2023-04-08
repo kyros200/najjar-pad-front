@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../css/main.css";
 import "./NajjarDoc.scss";
 import ReactModal from 'react-modal';
 import ReactLoading from 'react-loading';
@@ -15,20 +14,25 @@ function NajjarDoc({open, onClose = () => {console.log("You didn't put a onClose
     useEffect(() => {
         if(renderedEndpoint) {
             setIsLoading(true)
-            fetch(`https://najjar-pad.onrender.com/pad${renderedEndpoint}`)
-            .then((res) => res.json())
-            .then((data) => {
-                if(data.success) {
-                    if(data?.data) { //EXISTING PAD
-                        setMarkdown(data.data.markdown);
+            try {
+                fetch(`https://najjar-pad.onrender.com/pad${renderedEndpoint}`)
+                .then((res) => res.json())
+                .then((data) => {
+                    if(data.success) {
+                        if(data?.data) { //EXISTING PAD
+                            setMarkdown(data.data.markdown);
+                        } else {
+                            setMarkdown(`Pad "*${renderedEndpoint}*" not found. Are you sure you are pointing to the right one?`)    
+                        }
                     } else {
-                        setMarkdown(`Pad "*${renderedEndpoint}*" not found. Are you sure you are pointing to the right one?`)    
+                        setMarkdown(`Pad "*${renderedEndpoint}*" not found. Are you sure you are pointing to the right one?`)
                     }
-                } else {
-                    setMarkdown(`Pad "*${renderedEndpoint}*" not found. Are you sure you are pointing to the right one?`)
-                }
+                    setIsLoading(false);
+                });
+            }
+            catch(e) {
                 setIsLoading(false);
-            });
+            }
         }
     }, [renderedEndpoint])
 
