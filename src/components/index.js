@@ -128,21 +128,28 @@ function MainPage() {
     }
 
     const setNewPass = (newPassword, newReadOnly) => {
-        fetch(`${back_url}/pad/setPass${window.location.pathname}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id_pad: idPadRef.current,
-                pass: newPassword,
-                read_only: newReadOnly,
+        setIsLoading(true)
+        try {
+            fetch(`${back_url}/pad/setPass${window.location.pathname}`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id_pad: idPadRef.current,
+                    pass: newPassword,
+                    read_only: newReadOnly,
+                })
             })
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log("eu fiz a request");
-        });
+            .then((res) => res.json())
+            .then((data) => {
+                setIsLoading(false)
+            });
+        }
+        catch(e) {
+            console.log(e)
+            setIsLoading(false)
+        }
     }
 
     useEffect(() => {
