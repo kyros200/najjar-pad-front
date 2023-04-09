@@ -10,6 +10,7 @@
     "react-markdown-editor-lite": "^1.2.4",
     "react-modal": "^3.13.1",
     "react-scripts": "4.0.1",
+    "react-input-mask": "^2.0.4",
     "remark-gfm": "^1.0.0",
     "sass": "^1.47.0"
   },

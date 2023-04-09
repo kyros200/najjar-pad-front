@@ -1,20 +1,16 @@
 import { useState } from "react";
-import NajjarDoc from '../../NajarDoc'
-import NajjarDocImage from '../../NajarDoc/NajjarDocWhite.svg'
+import NajjarDoc from '../shared/NajarDoc'
+import NajjarDocImage from '../shared/NajarDoc/NajjarDocWhite.svg'
 import "./menu.scss";
+
+import Button from '../shared/Button'
+import Input from '../shared/Input'
+import Hatch from '../shared/Hatch'
 
 function Menu(props) {
     const [newChildren, setNewChildren] = useState("");
     const [password, setPassword] = useState("");
     const [modalDoc, setModalDoc] = useState(false);
-
-    const renderChildren = () => {
-        return props.children.map((c) => 
-            <div key={c} className={`childrenButton`} onClick={() => window.location.href = `${window.location.href}/${c}`}>
-                {c}
-            </div>
-        )
-    }
 
     const goToChildren = () => {
         if(newChildren !== "") {
@@ -49,50 +45,50 @@ function Menu(props) {
             <div className={`childrenInfo ${props.open ? `` : "collapse"}`}>
                 <div className="top">
                     <div className={`header`}>
-                        NajjarPad.
+                        <a href="https://pad.najjar.dev" className="link">NajjarPad.</a>
                         <div className="najjarDocButton" onClick={() => setModalDoc(true)}>
                             <img src={NajjarDocImage} alt="NajjarDoc" />
                         </div>
                     </div>
-                    <div className={`childrenActions`}>
+                    <div className={`menuActions`}>
                         {(props.needPass || props.readOnly) &&
                         <div style={{display: `flex`, flexDirection: `column`}}>
                             {props.readOnly ?
                             <div className={`needPassText`}>
-                                This is a Read Only Pad! Please enter the correct password to edit this pad.
+                                This is a Read Only Pad! Please enter the correct password to edit this Pad.
                             </div>
                             :
                             <div className={`needPassText`}>
-                                This is a Private Pad! Please enter the correct password to view and edit this pad.
+                                This is a Private Pad! Please enter the correct password to view and edit this Pad.
                             </div>
                             }
                             <div className={`childrenCreateChildren breakLine`}>
                                 <div className={`newChildrenName`}>
-                                    <input placeholder={`Password...`} value={password} onChange={(e) => setPassword(e.target.value)} />
+                                    <Input label={`Password`} value={password} onChange={(e) => setPassword(e.target.value)} />
                                 </div>
-                                <div onClick={() => props.validatePass(password)} className={`newChildrenGo`}>
+                                <Button onClick={() => props.validatePass(password)}>
                                     Go!
-                                </div>
+                                </Button>
                             </div>
                         </div>
                         }
 
                         {(!props.needPass && !props.readOnly && window.location.pathname !== `/`) && 
-                        <div onClick={() => props.openPassModal()} className={`childrenToFather`}>
+                        <Button onClick={() => props.openPassModal()} className={`buttonSpace`}>
                             Set Password
-                        </div>
+                        </Button>
                         }
 
                         { window.location.pathname.split("/").length > 2 &&
-                        <div onClick={() => goToFather()} className={`childrenToFather`}>
-                            back to father pad
-                        </div>
+                        <Button onClick={() => goToFather()} className={`buttonSpace`}>
+                            Back to father Pad
+                        </Button>
                         }
 
                         {window.location.pathname === `/` &&
                         <div className={`rootPageTextContainer`}>
                             <div className={`rootPageText`}>
-                                Welcome to pad.najjar.dev! Here you can organize yourself with pads using Markdown. Try it out chosing a name! For tutorial, go to <a href="/tutorial">/tutorial</a>
+                                Welcome to <Hatch text={`NajjarPad.`} />! Here you can organize yourself with Pads using Markdown. Try it out chosing a name! For tutorial, go to <a href="/tutorial">/tutorial</a>
                             </div>
                         </div>
                         }
@@ -100,15 +96,21 @@ function Menu(props) {
                         {!props.needPass && !props.readOnly &&
                         <div className={`childrenCreateChildren`}>
                             <div className={`newChildrenName`}>
-                                <input placeholder={`New pad...`} value={newChildren} onChange={(e) => setNewChildren(e.target.value)} />
+                                <Input label={`New pad`} value={newChildren} onChange={(e) => setNewChildren(e.target.value)} />
                             </div>
-                            <div onClick={() => goToChildren()} className={`newChildrenGo`}>
+                            <Button onClick={() => goToChildren()}>
                                 Go!
-                            </div>
+                            </Button>
                         </div>
                         }
                     </div>
-                    {renderChildren()}
+                    <div className="childrenButtonsContainer">
+                        {props.children.map((c) => 
+                            <Button key={c} className={`childrenButton`} onClick={() => window.location.href = `${window.location.href}/${c}`}>
+                                {c}
+                            </Button>
+                        )}
+                    </div>
                 </div>
                 <div className={`footer`}>
                     <div className='text'>

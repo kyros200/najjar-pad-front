@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import ReactLoading from 'react-loading';
 
 import Menu from './Menu';
 import Editor from './Editor';
-import Modal from './Modal';
+import Modal from './shared/Modal';
 import SetPassword from "./SetPassword";
 
 // const back_url = `http://localhost:80`;
@@ -31,7 +31,7 @@ function MainPage() {
     const lastSavedMarkdownRef = useRef(lastSavedMarkdown);
     lastSavedMarkdownRef.current = lastSavedMarkdown;
 
-    const getPad = () => {
+    const getPad = useCallback(() => {
         if(window.location.pathname !== `/`){
             fetch(`${back_url}/security${window.location.pathname}`)
             .then((res) => res.json())
@@ -53,7 +53,7 @@ function MainPage() {
         } else {
             setIsLoading(false);
         }
-    }
+    }, [])
 
     const requestPad = () => {
         fetch(`${back_url}/pad${window.location.pathname}`)
@@ -149,7 +149,7 @@ function MainPage() {
         getPad();
         const interval = setInterval(savePad, 5000);
         return () => clearInterval(interval);
-    }, []);
+    }, [getPad]);
 
     return (
         <div className={`container`}>

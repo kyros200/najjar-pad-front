@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "react-markdown-editor-lite/lib/index.css";
+import Button from "../shared/Button";
+import Input from "../shared/Input";
 import "./setPassword.scss";
 
 function SetPassword(props) {
@@ -17,33 +18,28 @@ function SetPassword(props) {
     return (
         <div className={`newPassContainer`}>
             <div className="topContent">
-                <div className="modalTitle">
-                    Set Password and Read Only
-                </div>
-                <div className="closeButton" onClick={() => props.setPassModal(false)}>
+                <Button className="closeButton" onClick={() => props.setPassModal(false)}>
                     X
-                </div>
+                </Button>
             </div>
             <div className="middleContent">
                 <div className="passwordInput">
-                    <input placeholder={`New Password...`} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                    <Input label={`New Password`} value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                 </div>
             </div>
-            <div className={`bottomContent ${!newPassword ? `toEnd` : ``}`}>
-                {newPassword &&
-                <div className={`readOnlyContainer`}>
-                    <div className="readOnlyText">
-                        Is Read Only?
-                    </div>
-                    <div className="readOnlyInput">
-                        <input type="checkbox" placeholder={`New Password...`} value={newReadOnly} onChange={(e) => {setNewReadOnly(e.target.checked)}} />
-                    </div>
+            {newPassword &&
+            <div className={`readOnlyContainer`}>
+                <div className="readOnlyText">
+                    Is Read Only?
                 </div>
-                }
-                <div className="submitButton" onClick={() => submit()}>
-                    Update
+                <div className="readOnlyInput">
+                    <input type="checkbox" placeholder={`New Password...`} value={newReadOnly} onChange={(e) => {setNewReadOnly(e.target.checked)}} />
                 </div>
             </div>
+            }
+            <Button className="updateButton" onClick={() => submit()}>
+                Update
+            </Button>
         </div>
     );
 }

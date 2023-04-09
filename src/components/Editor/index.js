@@ -1,5 +1,4 @@
 import ReactEditor from "react-markdown-editor-lite";
-import "react-markdown-editor-lite/lib/index.css";
 import "./editor.scss";
 const ReactMarkdown = require('react-markdown');
 const gfm = require('remark-gfm');
@@ -15,7 +14,7 @@ function Editor(props) {
                 }}
                 onChange={(e) => props.setMarkdown(e.text)}
                 renderHTML={(text) => <ReactMarkdown remarkPlugins={[gfm]}>{text}</ReactMarkdown>}
-                placeholder={`this pad is empty!`}
+                placeholder={`this Pad is empty!`}
                 config={{
                     view: { 
                         // html: window.innerWidth > 800 ? true : false,
